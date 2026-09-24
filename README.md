@@ -50,7 +50,7 @@ All the numbers come from code. The AI reads the numbers; it never makes them up
 | | Feature | Status |
 |:-:|---|---|
 | 📝 | **Debrief:** after each stint and session, the corners where you lost the most time and the likely cause, stint trends, and your progress over 30, 60 and 90 days, with no AI | 🧪 First version |
-| 🔒 | **Consistency:** how repeatable each corner is, and which corners are "locked" (fast and consistent) | 🧪 In development |
+| 🔒 | **Consistency:** how repeatable each corner is, and which corners are "locked" (fast and consistent) | ✅ Available |
 | 🧑 | **Driver profile:** your habits across all your laps (brake point, brake release, coast, apex speed, throttle) against the reference drivers, built by your AI from pitwall's numbers | ⏳ Planned |
 | 🤖 | **AI coach:** your own AI reads your data through an MCP server: trends, practice plans, and questions at any time | ⏳ Planned |
 
@@ -83,7 +83,7 @@ Everything stays on your PC. pitwall does not upload anything.
 | What | Where |
 |---|---|
 | One file for each lap | `data/laps/<game>/<track>/<car>/<session>/lap_NNN.parquet` |
-| The lap catalog | `data/pitwall.duckdb` |
+| The lap catalog | `data/pitwall.sqlite` (SQLite: you can open it in any SQLite tool, also while the recorder runs) |
 
 The analysis and the debrief run on your PC. When the MCP server arrives, your AI reads your data only when you ask it.
 
@@ -111,7 +111,7 @@ flowchart LR
   MOTEC --> IMP[Importers]
   GOF --> IMP
   REF --> IMP
-  COL --> STORE[(One Parquet file per lap<br/>+ DuckDB catalog)]
+  COL --> STORE[(One Parquet file per lap<br/>+ SQLite catalog)]
   IMP --> STORE
   STORE --> ANA[Analysis]
   PACE[(Ohne Speed<br/>race-pace sheets)] -.-> ANA
@@ -143,7 +143,7 @@ This shows whether you lose time on corner entry, on corner exit or on the strai
 
 | Source | Format | What it gives | Status |
 |---|---|---|---|
-| ACC shared memory | Binary structs, 100 Hz | About 90 live channels for each sample | ✅ |
+| ACC shared memory | Binary structs, 100 Hz | About 100 live channels for each sample, with positions, steering degrees and tyre data | ✅ |
 | ACC MoTeC | `.ld` + `.ldx` | 55 channels at up to 200 Hz | ✅ |
 | GO FAST | SQLite, Brotli-compressed JSON | ACC and LMU laps at 20 Hz, with validity and fuel | ✅ |
 | GO Setups reference laps | MoTeC `.ld` | Esports reference laps | ✅ |
