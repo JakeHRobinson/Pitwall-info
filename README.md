@@ -49,7 +49,7 @@ All the numbers come from code. The AI reads the numbers; it never makes them up
 
 | | Feature | Status |
 |:-:|---|---|
-| 📝 | **Debrief:** after each stint and session, the corners where you lost the most time and the likely cause, with no AI | 🧪 In development |
+| 📝 | **Debrief:** after each stint and session, the corners where you lost the most time and the likely cause, stint trends, and your progress over 30, 60 and 90 days, with no AI | 🧪 First version |
 | 🔒 | **Consistency:** how repeatable each corner is, and which corners are "locked" (fast and consistent) | 🧪 In development |
 | 🧑 | **Driver profile:** your habits across all your laps (brake point, brake release, coast, apex speed, throttle) against the reference drivers, built by your AI from pitwall's numbers | ⏳ Planned |
 | 🤖 | **AI coach:** your own AI reads your data through an MCP server: trends, practice plans, and questions at any time | ⏳ Planned |
