@@ -38,11 +38,12 @@ with each session.
 - **A coach that knows you.** pitwall builds a picture of how you drive from your whole history: every car, every
   track and every session. With no history, it starts from your first laps, and it gets better the more you drive.
 - **Something for every driver, with no AI.** Every driver gets a debrief after each stint and session: where the
-  time went, the likely cause, and what to try next. What code can conclude from the data, the debrief says.
+  time went, the likely cause, and what to try next. Everything that your data can tell you, the debrief says.
 - **Your own AI as your coach.** Connect the AI that you already use. It reads your pitwall data and talks with you
   about it: your habits, your trends, a plan for your next practice, and any question at any time.
-- **Honest numbers.** Every number comes from code, and every number says where it came from. When the data cannot
-  answer a question, pitwall says so. The AI quotes pitwall's numbers; it never makes them up.
+- **Verified numbers.** pitwall calculates and checks every number from your telemetry, and each number shows its
+  source. Your AI coach quotes only these numbers, so its coaching rests on your data, not on a guess. When the data
+  cannot answer a question, pitwall says so.
 - **Pace and racecraft.** In practice and qualifying, pitwall coaches your pace corner by corner. In a race, it also
   looks at what decides the result: the start, your positions, penalties, pit stops and contact.
 - **Every level of driver.** Drivers who still use assists, such as the racing line, are not left out. pitwall
