@@ -28,20 +28,30 @@
 <sub>A real Nordschleife 24h lap in the Aston Martin V8 Vantage GT3 (8:13.36). The colour is the speed. The dot drives the lap at 16× real pace.[^art]</sub>
 </div>
 
-## What pitwall does
+## What we aim to deliver
 
-pitwall collects your laps from ACC and LMU, compares them corner by corner with reference laps and with your own
-best laps, and tells you how you drive.
+pitwall aims to be a personal driving coach that learns from your own laps. It takes your laps from ACC and LMU
+and compares them corner by corner with reference laps and with your own best laps. Most telemetry tools show you
+graphs and leave the rest to you. pitwall tells you what the data means for your driving, and it gets more personal
+with each session.
 
-- **A debrief after each stint and session.** The debrief shows what the data says about the laps you just drove:
-  where you lost time, and the likely cause (for example early braking, a long coast, or an early turn-in). It runs
-  on your PC and uses no AI.
-- **A driver profile and an AI coach.** Connect your own AI to your data through an MCP server. It builds your
-  driver profile from all your laps: your habits, for example "you brake at the same point as the reference
-  drivers, but you release the brake early and carry less speed through the apex". It also shows your trends over
-  time, makes practice plans, and answers your questions at any time, not only after a session.
+- **A coach that knows you.** pitwall builds a picture of how you drive from your whole history: every car, every
+  track and every session. With no history, it starts from your first laps, and it gets better the more you drive.
+- **Something for every driver, with no AI.** Every driver gets a debrief after each stint and session: where the
+  time went, the likely cause, and what to try next. What code can conclude from the data, the debrief says.
+- **Your own AI as your coach.** Connect the AI that you already use. It reads your pitwall data and talks with you
+  about it: your habits, your trends, a plan for your next practice, and any question at any time.
+- **Honest numbers.** Every number comes from code, and every number says where it came from. When the data cannot
+  answer a question, pitwall says so. The AI quotes pitwall's numbers; it never makes them up.
+- **Pace and racecraft.** In practice and qualifying, pitwall coaches your pace corner by corner. In a race, it also
+  looks at what decides the result: the start, your positions, penalties, pit stops and contact.
+- **Every level of driver.** Drivers who still use assists, such as the racing line, are not left out. pitwall
+  meets you where you are and helps you take the next step.
+- **Your data stays yours.** pitwall runs on your PC and uploads nothing. Other drivers in your races are stored
+  only as race numbers.
 
-All the numbers come from code. The AI reads the numbers; it never makes them up.
+The analysis gets faster with each version. The goal is a coach that can talk with you between stints, while the
+session is still on.
 
 ## Features
 
@@ -49,7 +59,8 @@ All the numbers come from code. The AI reads the numbers; it never makes them up
 
 | | Feature | Status |
 |:-:|---|---|
-| 📝 | **Debrief:** after each stint and session, the corners where you lost the most time and the likely cause, stint trends, and your progress since your last session, with no AI | 🧪 First version |
+| 📝 | **Debrief:** after each stint and session, the corners where you lost the most time and the likely cause, with drills; stint trends, tyres, and your progress since your last session, with no AI | ✅ Available |
+| 🏁 | **Race debrief:** your start, positions by lap, penalties and their cost, pit stops, and contact with the pace after it | ⏳ Next |
 | 🔒 | **Consistency:** how repeatable each corner is, and which corners are "locked" (fast and consistent) | ✅ Available |
 | 🧑 | **Driver profile:** your habits across all your laps (brake point, brake release, coast, apex speed, throttle) against the reference drivers, built by your AI from pitwall's numbers | ⏳ Planned |
 | 🤖 | **AI coach:** your own AI reads your data through an MCP server: trends, practice plans, and questions at any time | ⏳ Planned |
@@ -69,6 +80,7 @@ All the numbers come from code. The AI reads the numbers; it never makes them up
 |:-:|---|---|
 | 🎙️ | **ACC live recording:** reads ACC telemetry at 100 Hz while you drive, splits it into laps, and saves each lap | ✅ Available |
 | 🗄️ | **History import:** your ACC MoTeC files, GO FAST laps (ACC and LMU), and GO Setups reference laps | ✅ Available |
+| 🚦 | **ACC race data:** positions, gaps, penalties, flags, damage and pit stops from shared memory, and race events from the ACC broadcasting API | ⏳ Next |
 | 🏁 | **LMU live recording:** through the official `LMU_Data` shared memory | ⏳ Planned |
 
 ## Access
@@ -76,9 +88,17 @@ All the numbers come from code. The AI reads the numbers; it never makes them up
 pitwall is in private testing with a small group of drivers, and the code is in a private repository.
 This page describes what pitwall does. To join the tests, ask Jake.
 
-## Where your data is stored
+## Tester build
 
-Everything stays on your PC. pitwall does not upload anything.
+Testers get a zip from Jake: no install needed.
+
+1. Unzip it anywhere.
+2. Double-click `pitwall.cmd`. The first start downloads Python and the packages once (1–2 minutes, needs internet).
+3. Choose from the menu: record a session, import your history, show your last debrief, or your PBs.
+
+Your laps are kept in `%LOCALAPPDATA%\pitwall`, so a new zip keeps them. `READ-ME.txt` in the zip has the details.
+
+## Where your data is stored
 
 | What | Where |
 |---|---|
@@ -107,6 +127,7 @@ flowchart LR
     REF[(GO Setups<br/>reference laps)]
   end
   ACC --> COL[Recorder<br/>100 Hz]
+  BRD[ACC broadcasting API] -.-> COL
   LMU -.-> COL
   MOTEC --> IMP[Importers]
   GOF --> IMP
@@ -122,10 +143,11 @@ flowchart LR
   classDef done fill:#238636,stroke:#2ea043,color:#fff
   classDef building fill:#8957e5,stroke:#a371f7,color:#fff
   class ACC,COL,STORE,MOTEC,GOF,REF,IMP done
-  class ANA,DEB building
+  class ANA,DEB done
+  class BRD building
 ```
 
-Green parts are available. Purple parts are in development. Dotted lines are planned.
+Green parts are available. Purple parts are next. Dotted lines are planned.
 
 ## How lap comparison works
 
